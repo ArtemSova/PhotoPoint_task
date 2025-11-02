@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Отправка уведомлений</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f9fc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        h1 { color: #333; }
+        form { margin: 10px; }
+        button {
+            margin: 10px;
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover { opacity: 0.8; }
+
+        .email { background-color: #007bff; color: white; }
+        .sms { background-color: #28a745; color: white; }
+        .telegram { background-color: #0088cc; color: white; }
+        .notify { background-color: #ff9800; color: white; } /* новая кнопка */
+    </style>
+</head>
+<body>
+    <h1>Отправка уведомлений</h1>
+
+    <form action="{% url 'send_email' %}" method="post">
+        {% csrf_token %}
+        <button class="email">Отправить Email</button>
+    </form>
+
+    <form action="{% url 'send_sms' %}" method="post">
+        {% csrf_token %}
+        <button class="sms">Отправить SMS</button>
+    </form>
+
+    <form action="{% url 'send_telegram' %}" method="post">
+        {% csrf_token %}
+        <button class="telegram">Отправить Telegram</button>
+    </form>
+
+    <form action="{% url 'send_notification' %}" method="post">
+        {% csrf_token %}
+        <button class="notify">Отправить сообщение (надежно)</button>
+    </form>
+</body>
+</html>
+
